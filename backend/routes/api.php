@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SocialMediaPageController;
 use App\Http\Controllers\WebsiteSettingController;
 
 /*
@@ -30,13 +31,17 @@ Route::middleware('api')->group(function(){
     //WEB SETTINGS
     Route::get('/show-website-settings', [WebsiteSettingController::class, 'showWebsiteSetting']);
     
-    
+    //SOCIAL MEDIA
+    Route::get('/show-social-media', [SocialMediaPageController::class, 'showSocialMedia']);
+
      
 });
     
 Route::middleware(['auth:sanctum'])->group(function(){
     
-        Route::post('/logout', [UserController::class, 'logout']);
+    Route::patch('/update-website-settings', [WebsiteSettingController::class, 'updateWebsiteSetting']);
+    Route::patch('/update-social-media', [SocialMediaPageController::class, 'updateSocialMedia']);
+    Route::post('/logout', [UserController::class, 'logout']);
 
 
         //ADMIN
