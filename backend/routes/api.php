@@ -4,8 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SocialMediaPageController;
 use App\Http\Controllers\WebsiteSettingController;
+use App\Http\Controllers\CategorySectionController;
+use App\Http\Controllers\SocialMediaPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,8 @@ Route::middleware('api')->group(function(){
     //SOCIAL MEDIA
     Route::get('/show-social-media', [SocialMediaPageController::class, 'showSocialMedia']);
 
-     
+     //CATEGORY SECTION
+     Route::get('/show-category-section', [CategorySectionController::class, 'showCategorySection']);
 });
     
 Route::middleware(['auth:sanctum'])->group(function(){

@@ -23,7 +23,10 @@ class UserSeeder extends Seeder
             'firstname'=>'super admin',
             'lastname'=>'one',
             'email'=>'superadmin@victruth.com',
+            'business_name'=>'Victruth',
             'password'=>Hash::make('123456'),
+            'category_section_id'=>'1',
+            'status'=>'1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
@@ -34,7 +37,10 @@ class UserSeeder extends Seeder
             'firstname'=>'admin',
             'lastname'=>'one',
             'email'=>'admin@victruth.com',
+            'business_name'=>'Victruth admin',
             'password'=>Hash::make('123456'),
+            'category_section_id'=>'3',
+            'status'=>'1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
@@ -45,7 +51,10 @@ class UserSeeder extends Seeder
             'firstname'=>'user',
             'lastname'=>'one',
             'email'=>'user@victruth.com',
+            'business_name'=>'Victruth user',
             'password'=>Hash::make('123456'),
+            'category_section_id'=>'5',
+            'status'=>'1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],]
