@@ -26,11 +26,12 @@ class UserController extends Controller
          }
 
             $validator = Validator::make($request->all(), [
-            'firstname'=>'required',
-            'lastname'=>'required',
+            'firstname'=>'required|min:3',
+            'lastname'=>'required|min:3',
+            'business_name'=>'required|min:3',
+            'category_section_id'=>'required|integer',
             'email'=>'required|email',
-            'password'=>'required|confirmed',
-            //'password_confirmation' => 'required|same:password',
+            'password'=>'min:6|required|confirmed',
             
             ]);
 
@@ -47,6 +48,8 @@ class UserController extends Controller
         'email' => $request->input('email'),
         'firstname' => $request->input('firstname'),
         'lastname' => $request->input('lastname'),
+        'business_name' => $request->input('business_name'),
+        'category_section_id' => $request->input('category_section_id'),
         'password' => Hash::make($request->input('password')),
         'verification_code' => $email_verification,
     ]);
@@ -54,7 +57,7 @@ class UserController extends Controller
     //$token = $user->createToken($user->email.'_token')->plainTextToken;
    
     $email_verification_code = ['verification_string'=>$email_verification,'token'=> $randomToken, 'email'=>$request->input('email') ];
-   Mail::to($request->input('email'))->send(new SignupRegistration($email_verification_code));
+   //Mail::to($request->input('email'))->send(new SignupRegistration($email_verification_code));
 
 
     return response()->json(['status' => 200,
@@ -98,11 +101,7 @@ class UserController extends Controller
             'admin_role_id'=>$user->admin_role_id,
             'message'=>'Login was successful']);
          }
-
-
-         
         }
-  
     }
 
     public function forgetPassword(Request $request){
