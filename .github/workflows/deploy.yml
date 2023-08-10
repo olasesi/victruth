@@ -1,0 +1,23 @@
+name: Automatic Deployment
+
+on:
+  push:
+    branches:
+      - staging  # Replace "main" with the branch name you want to trigger deployments from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy frontend and backend
+        run: |
+          export DEPLOYPATH=/home/victruth/test.victruth.com/
+          /bin/cp -R frontend $DEPLOYPATH
+          /bin/cp -R backend $DEPLOYPATH
+
+      # Additional steps for building, testing, etc. can be added here
+
