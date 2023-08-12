@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\WebsiteSettingController;
 use App\Http\Controllers\CategorySectionController;
 use App\Http\Controllers\SocialMediaPageController;
@@ -37,16 +38,25 @@ Route::middleware('api')->group(function(){
 
      //CATEGORY SECTION
      Route::get('/show-category-section', [CategorySectionController::class, 'showCategorySection']);
+
+      //customers
+      Route::post('/customer-login', [CustomerController::class, 'saveCustomerLogin']);
+      Route::post('/customer-save-register', [CustomerController::class, 'saveCustomerRegister']);
 });
-    
+   
+
+
 Route::middleware(['auth:sanctum'])->group(function(){
     
     Route::patch('/update-website-settings', [WebsiteSettingController::class, 'updateWebsiteSetting']);
     Route::patch('/update-social-media', [SocialMediaPageController::class, 'updateSocialMedia']);
     Route::post('/logout', [UserController::class, 'logout']);
-
-
-        //ADMIN
-        //Route::post('/logout-admin', [AdminController::class, 'logoutAdmin']);
+    //ADMIN
+    //Route::post('/logout-admin', [AdminController::class, 'logoutAdmin']);
        
+    //logout
+    Route::post('/customer-logout', [CustomerController::class, 'customerLogout']);
+
     });
+
+    

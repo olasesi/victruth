@@ -18,7 +18,6 @@ class UserController extends Controller
 {
     public function saveRegister(Request $request)
     {
-
            $countRegistered = User::where('email', $request->input('email'))->where('active', 1)->count();
          if($countRegistered == 1){
              return response()->json(['status' => 500,'message'=>'This email address has already been used',
@@ -32,7 +31,6 @@ class UserController extends Controller
             'category_section_id'=>'required|integer',
             'email'=>'required|email',
             'password'=>'min:6|required|confirmed',
-            
             ]);
 
             if($validator->fails()){

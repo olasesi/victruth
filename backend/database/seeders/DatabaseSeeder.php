@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminRoleSeeder::class,
             SocialMediaPageSeeder::class,
             UserSeeder::class,
-            
+            //CustomerSeeder::class,
            
         ]);
     }
