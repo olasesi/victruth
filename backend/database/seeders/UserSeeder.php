@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
             'business_name'=>'Victruth user',
             'password'=>Hash::make('123456'),
             'category_section_id'=>'5',
-            'status'=>'1',
+            'status'=>'0',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],]

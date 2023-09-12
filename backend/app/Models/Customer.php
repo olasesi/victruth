@@ -11,7 +11,7 @@ class Customer extends Model
     use HasApiTokens, HasFactory;
 
     protected $fillable = [
-        'fullname', 'email', 'password', 'special_request', 'event_date', 'phone', 'event_location', 'verification_code'
+        'fullname', 'email', 'password', 'phone', 'verification_code', 'remember_token'
     ];
 
     protected $hidden = [
@@ -27,4 +27,9 @@ class Customer extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function event(){
+        return $this->hasMany(Event::class);
+
+    }
 }

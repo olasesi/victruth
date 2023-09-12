@@ -81,7 +81,7 @@ class UserController extends Controller
             ]);
         }else{
 
-            $user = User::where('email', $request->email)->where('active', 1)->first();
+            $user = User::where('email', $request->email)->where('active', 1)->leftJoin('admin_roles', 'admin_roles.id', '=', 'users.admin_role_id')->first();
 
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response()->json(['status' => 401,
@@ -91,12 +91,12 @@ class UserController extends Controller
 
             //Deal with the remember me also
 
-            $token = $user->createToken($user->email.'_Token')->plainTextToken;
+            $token = $user->createToken($user->email.'_Token', ['user_roles'=>$user->user_roles])->plainTextToken;
 
              return response()->json(['status' => 200,
             'email'=> $user->email,
             'token'=>$token,
-            'admin_role_id'=>$user->admin_role_id,
+            'user_roles'=>$user->user_roles,
             'message'=>'Login was successful']);
          }
         }
@@ -142,11 +142,30 @@ class UserController extends Controller
 }
 
     public function logout(){
-
         auth()->user()->tokens()->delete();
-    
         return response()->json(['status' => 200,
                         'message'=>'Successfully logout']);
                    }
+
+     public function showVendors() {
+         $user = User::where('active', 1)->leftJoin('admin_roles', 'admin_roles.id', '=', 'users.admin_role_id')->leftJoin('category_sections', 'category_sections.id', '=', 'users.category_section_id')->paginate(5);
+
+         return response()->json(['users'=> $user,
+         'status' => 200,
+         'message'=>'Successful']);
+    }
+
+
+    public function showUnconfirmedVendors() {
+        $user = User::where('active', 1)->where('status', 0)->leftJoin('admin_roles', 'admin_roles.id', '=', 'users.admin_role_id')->leftJoin('category_sections', 'category_sections.id', '=', 'users.category_section_id')->orderBy('users.created_at', 'desc')->take(5)->get();
+
+        
+        return response()->json(['users'=> $user,
+        'status' => 200,
+        'message'=>'Successful']);
+   }
+
+ 
     
-}
+     }
+    

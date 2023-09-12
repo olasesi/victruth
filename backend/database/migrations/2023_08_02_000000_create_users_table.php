@@ -39,9 +39,10 @@ class CreateUsersTable extends Migration
             $table->string('zipcode')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->string('address')->nullable();
             $table->integer('status')->default('0');
             $table->rememberToken();
+            $table->string('address')->nullable();
+            $table->string('vendor_business_image')->default('/storage/assets/images/logo/logo.png');
             $table->foreignId('category_section_id')->constrained()->onUpdate('cascade');
             $table->unsignedBigInteger('admin_role_id')->default(3);
             $table->foreign('admin_role_id')->references('id')->on('admin_roles')->onUpdate('cascade');
