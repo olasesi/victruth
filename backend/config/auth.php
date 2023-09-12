@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        'customer' => [
+            'driver' => 'sanctum', // Use Sanctum for API authentication
+            'provider' => 'customers', // Use the 'customers' provider for retrieving users
+        ],
     ],
 
     /*
@@ -65,6 +70,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class, // Replace with the actual namespace to your Customer model
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

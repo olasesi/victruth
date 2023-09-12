@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -19,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
+        
         'active',
         'role',
         'firstname',
@@ -27,6 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'verification_code',
+        'forget_password',
+        'remember_token',
         'phone',
         'gender',
         'profile_picture',
@@ -39,9 +42,35 @@ class User extends Authenticatable implements MustVerifyEmail
         'state',
         'city',
         'address',
+        'business_name',
+        'admin_role_id',
+        'category_section_id',
+        'status',
+        
         
     ];
     
+    protected $visible = [
+        'firstname',
+        'lastname',
+        'email',
+        'phone',
+        'gender',
+        'profile_picture',
+        'username',
+        'country',
+        'website',
+        'bio',
+        'occupation',
+        'zipcode',
+        'state',
+        'city',
+        'address',
+        'business_name',
+        'category_section_id',
+        'category',
+        'created_at' 
+    ];
    
     /**
      * The attributes that should be hidden for serialization.
@@ -61,4 +90,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d M Y');
+    }
 }
