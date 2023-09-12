@@ -1,4 +1,8 @@
 /.vscode
 frontend/*
 !frontend/build/
+frontend/*
+frontend
 .cpanel.yml
+.gitignore
+.github
