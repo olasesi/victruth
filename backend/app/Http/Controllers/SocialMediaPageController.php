@@ -34,20 +34,20 @@ if($validator->fails()){
 }else{
     
     $social_media = SocialMediaPage::find(1);
-    $social_media->value = $request->input('facebook_url');
+    $social_media->social_media_url = $request->input('facebook_url');
     $social_media->save();
 
     $social_media = SocialMediaPage::find(2);
-    $social_media->value = $request->input('twitter_url');
+    $social_media->social_media_url = $request->input('twitter_url');
     $social_media->save();
 
     $social_media = SocialMediaPage::find(3);
-    $social_media->value = $request->input('instagram_url');
+    $social_media->social_media_url = $request->input('instagram_url');
     $social_media->save();
 
     
     $social_media = SocialMediaPage::find(4);
-    $social_media->value = $request->input('whatsapp_url');
+    $social_media->social_media_url = $request->input('whatsapp_url');
     $social_media->save();
     
      return response()->json(['status' => 200,

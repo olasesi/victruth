@@ -25,6 +25,11 @@ class WebsiteSettingController extends Controller
                 'meta_description'=> 'nullable',
                 'upload_logo'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
                 'upload_fav'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+                'address'=> 'nullable',
+                'email'=> 'nullable|email',
+                'email2'=> 'nullable|email',
+                'phone'=> 'nullable|numeric',
+                'phone2'=> 'nullable|numeric',
 
             ]);
      
@@ -43,43 +48,71 @@ class WebsiteSettingController extends Controller
         $websetting->value = $request->input('meta_description');
         $websetting->save();
 
-        if ($request->file('upload_logo')){
+        $websetting = WebsiteSetting::find(5);
+        $websetting->value = $request->input('address');
+        $websetting->save();
 
-           $image = WebsiteSetting::where('name', 'logo')->value('value');
-       
-                if(File::exists($image) && $image != "/storage/assets/images/logo/logo.png") {
-                    
-                    File::delete($image);
-             }
+        $websetting = WebsiteSetting::find(6);
+        $websetting->value = $request->input('email');
+        $websetting->save();
+
+        $websetting = WebsiteSetting::find(7);
+        $websetting->value = $request->input('email2');
+        $websetting->save();
+
+        $websetting = WebsiteSetting::find(8);
+        $websetting->value = $request->input('phone');
+        $websetting->save();
+
+        $websetting = WebsiteSetting::find(9);
+        $websetting->value = $request->input('phone2');
+        $websetting->save();
         
-                $file_name = time().'_'.$request->upload_logo->getClientOriginalName();
-                $file_path = $request->file('upload_upload')->storeAs('/storage/assets/images/logo', $file_name, 'public');
+
+        if ($request->hasFile('upload_logo')) {
+            $uploadedImage = $request->file('upload_logo');
+            $placeholderImage = '/storage/assets/images/logo/logo.png';
             
-                $websetting = WebsiteSetting::find(2);
-                $websetting->value = '/storage/assets/images/logo/'.$file_name;
+            $existingImage = WebsiteSetting::where('name', 'logo')->value('value');
+                if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
+                    File::delete(public_path($existingImage));
+                }
+        
+                $file_name = time() . '_' . $uploadedImage->getClientOriginalName();
+                $file_path = $uploadedImage->storeAs('/public/assets/images/logo', $file_name);
+        
+                $websetting = WebsiteSetting::where('name', 'logo')->first();
+                $websetting->value = '/storage/assets/images/logo/' . $file_name;
                 $websetting->save();
-            
-                   
-        }
-
-        if ($request->file('upload_fav')){
-
-            $image = WebsiteSetting::where('name', 'fav logo')->value('value');
         
-                 if(File::exists($image) && $image != "/storage/assets/images/logo/fav.png") {
-                     
-                     File::delete($image);
-              }
+                return response()->json(['message' => 'Image uploaded and updated']);
+            
+        } 
          
-                 $file_name = time().'_'.$request->upload_fav->getClientOriginalName();
-                 $file_path = $request->file('upload_fav')->storeAs('/storage/assets/images/logo', $file_name, 'public');
-             
-                 $websetting = WebsiteSetting::find(3);
-                 $websetting->value = '/storage/assets/images/logo/'.$file_name;
-                 $websetting->save();
+        
+        if ($request->hasFile('upload_fav')){
+            $uploadedImage = $request->file('upload_fav');
+            $placeholderImage = '/storage/assets/images/logo/fav.png';
+            
+            $existingImage = WebsiteSetting::where('name', 'fav logo')->value('value');
+
+            if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
+                File::delete(public_path($existingImage));
+            }  
+            
+            $file_name = time() . '_' . $uploadedImage->getClientOriginalName();
+            $file_path = $uploadedImage->storeAs('/public/assets/images/logo', $file_name);
+            
+            $websetting = WebsiteSetting::where('name', 'fav')->first();
+            $websetting->value = '/storage/assets/images/logo/' . $file_name;
+            $websetting->save();
+    
+            return response()->json(['message' => 'Image uploaded and updated']);
              
                     
          }
+
+      
         
          return response()->json(['status' => 200,
          'message'=>'Success']);

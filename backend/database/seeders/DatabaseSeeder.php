@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
             CategorySectionSeeder::class,
             AdminRoleSeeder::class,
             SocialMediaPageSeeder::class,
+            AppearanceSeeder::class,
             UserSeeder::class,
-            //CustomerSeeder::class,
+            CustomerSeeder::class,
+            OrderSeeder::class,
+            
            
         ]);
     }
