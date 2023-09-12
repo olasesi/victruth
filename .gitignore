@@ -1,7 +1,7 @@
-/.vscode
-frontend/*
-!frontend/build/
-frontend/*
+.vscode
+#frontend/*
+#!frontend/build/
+#frontend/*
 frontend
 .cpanel.yml
 .gitignore
