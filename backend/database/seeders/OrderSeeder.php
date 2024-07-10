@@ -15,13 +15,7 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('orders')->insert([[
-            'id'=>'1',
-            'reference'=>'1234567653',
-            'customer_id'=>'1',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ],
+        DB::table('orders')->insert([
         ]);
     }
 }

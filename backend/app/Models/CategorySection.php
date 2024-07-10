@@ -10,10 +10,11 @@ class CategorySection extends Model
     use HasFactory;
 
     protected $visible = [
+        'id',
         'category'
     ];
-    
-    public function Events()
+
+       public function Events()
     {
         return $this->belongsToMany(Event::class);
     }

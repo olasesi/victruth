@@ -17,13 +17,10 @@ class CreateCustomersTable extends Migration
             $table->id();
            $table->string('fullname')->nullable();
             $table->string('email')->nullable();
-            $table->text('special_request')->nullable();
-            $table->string('event_date')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->string('event_location')->nullable();
             $table->string('forget_password')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('expiry_timestamp')->nullable();
             $table->string('verification_code')->nullable();
             $table->rememberToken();
             $table->timestamps();

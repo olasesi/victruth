@@ -45,6 +45,12 @@ return [
             'driver' => 'sanctum', // Use Sanctum for API authentication
             'provider' => 'customers', // Use the 'customers' provider for retrieving users
         ],
+
+         
+        'admin' => [
+            'driver' => 'sanctum', // Use Sanctum for API authentication
+            'provider' => 'admins', // Use the 'customers' provider for retrieving users
+        ],
     ],
 
     /*
@@ -74,6 +80,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Customer::class, // Replace with the actual namespace to your Customer model
         ],
+        
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class, // Replace with the actual namespace to your Customer model
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -99,6 +110,12 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets', // Adjust the table name if needed
             'expire' => 60,
             'throttle' => 60,
         ],

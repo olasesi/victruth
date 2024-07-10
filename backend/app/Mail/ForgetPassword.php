@@ -29,6 +29,6 @@ class ForgetPassword extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.users.forgetpassword');
+        return $this->subject('Password Reset Link - Vendor')->markdown('emails.users.forgetpassword');
     }
 }

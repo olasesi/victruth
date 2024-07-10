@@ -15,19 +15,17 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('event_location')->nullable();
             $table->unsignedBigInteger('customer_id'); 
-            $table->date('event_date')->nullable();
-            $table->text('form_request')->nullable();
+            $table->string('limo_ride')->nullable();
             $table->string('event_planners')->nullable();
             $table->string('caterers')->nullable();
             $table->string('cakes')->nullable();
-            $table->string('drinks_suppliers')->nullable();
+            $table->string('drink_suppliers')->nullable();
             $table->string('servers_waiters')->nullable();
             $table->string('makeup_artists')->nullable();
             $table->string('venues')->nullable();
             $table->string('hall_decorators')->nullable();
-            $table->string('photographers_videos')->nullable();
+            $table->string('photographers_video')->nullable();
             $table->string('aso_ebi')->nullable();
             $table->string('printers')->nullable();
             $table->string('souvenirs_gifts')->nullable();

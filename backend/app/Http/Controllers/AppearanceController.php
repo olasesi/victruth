@@ -25,6 +25,8 @@ class AppearanceController extends Controller
             'paragraph1'=> 'nullable',
             'paragraph2'=> 'nullable',
             'slider'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'slider2'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'slider3'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
 
         ]);
  
@@ -63,8 +65,41 @@ class AppearanceController extends Controller
                 $websetting->value = '/storage/assets/images/slider/' . $file_name;
                 $websetting->save();
         
-                return response()->json(['message' => 'Image uploaded and updated']);
             
+        } 
+        
+        if ($request->hasFile('slider2')) {
+            $uploadedImage = $request->file('slider2');
+            $placeholderImage = '/storage/assets/images/slider/slider.jpg';
+            
+            $existingImage = Appearance::where('name', 'slider2')->value('value');
+                if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
+                    File::delete(public_path($existingImage));
+                }
+        
+                $file_name = time() . '_' . $uploadedImage->getClientOriginalName();
+                $file_path = $uploadedImage->storeAs('/public/assets/images/slider', $file_name);
+        
+                $websetting = Appearance::where('name', 'slider2')->first();
+                $websetting->value = '/storage/assets/images/slider/' . $file_name;
+                $websetting->save();
+        } 
+
+        if ($request->hasFile('slider3')) {
+            $uploadedImage = $request->file('slider3');
+            $placeholderImage = '/storage/assets/images/slider/slider.jpg';
+            
+            $existingImage = Appearance::where('name', 'slider3')->value('value');
+                if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
+                    File::delete(public_path($existingImage));
+                }
+        
+                $file_name = time() . '_' . $uploadedImage->getClientOriginalName();
+                $file_path = $uploadedImage->storeAs('/public/assets/images/slider', $file_name);
+        
+                $websetting = Appearance::where('name', 'slider3')->first();
+                $websetting->value = '/storage/assets/images/slider/' . $file_name;
+                $websetting->save();
         } 
         
         return response()->json(['status' => 200,

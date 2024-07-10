@@ -29,6 +29,6 @@ class SignupRegistration extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.users.registration');
+        return $this->subject('Victruth Vendor Registration')->markdown('emails.users.registration');
     }
 }

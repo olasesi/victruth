@@ -40,7 +40,7 @@ class WebsiteSettingSeeder extends Seeder
         [
             'id' => 4,
            'name'=>'meta description',
-           'value'=>'Victruth',
+           'value'=>'Explore our premium limo rental service. Be it for birthday, weddings, etc. And also connect with us for  reliable vendor services like event decorators, catering, etc to make your events a success. Discover a wide range of opportunity using our services.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],

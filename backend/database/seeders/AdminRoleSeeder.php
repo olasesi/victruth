@@ -16,19 +16,19 @@ class AdminRoleSeeder extends Seeder
     public function run()
     {
         DB::table('admin_roles')->insert([[
-            'id'=>'1',
+            'id'=>1,
             'user_roles'=>'Super admin',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'id'=>'2',
+            'id'=>2,
             'user_roles'=>'Admin',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
         [
-            'id'=>'3',
+            'id'=>3,
             'user_roles'=>'User',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

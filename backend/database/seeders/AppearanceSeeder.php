@@ -25,7 +25,7 @@ class AppearanceSeeder extends Seeder
         [
             'id' => 2,
            'name'=>'paragraph1',
-           'value'=>'Start designing your landing page here.',
+           'value'=>'And let us also manage your event for you',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],
@@ -39,6 +39,20 @@ class AppearanceSeeder extends Seeder
         [
             'id' => 4,
            'name'=>'slider',
+           'value'=>'/storage/assets/images/slider/slider.jpg',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ],
+        [
+            'id' => 5,
+           'name'=>'slider2',
+           'value'=>'/storage/assets/images/slider/slider.jpg',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ],
+        [
+            'id' => 6,
+           'name'=>'slider3',
            'value'=>'/storage/assets/images/slider/slider.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

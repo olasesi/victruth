@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->integer('active')->default('0');
+            $table->integer('active')->default(0);
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
-            $table->string('profile_picture')->default('placeholder.png');
+            $table->string('profile_picture')->default('/storage/assets/images/vendors/user-images/default.png');
             $table->string('username')->nullable();
             $table->string('verification_code')->nullable();
             $table->string('country')->nullable();
@@ -39,14 +39,15 @@ class CreateUsersTable extends Migration
             $table->string('zipcode')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->integer('status')->default('0');
+            $table->integer('status')->default(0);
             $table->rememberToken();
+            $table->timestamp('expiry_timestamp')->nullable();
             $table->string('address')->nullable();
-            $table->string('vendor_business_image')->default('/storage/assets/images/logo/logo.png');
+            $table->string('vendor_business_image')->default('/storage/assets/images/vendors/business-images/default.png');
             $table->foreignId('category_section_id')->constrained()->onUpdate('cascade');
-            $table->unsignedBigInteger('admin_role_id')->default(3);
-            $table->foreign('admin_role_id')->references('id')->on('admin_roles')->onUpdate('cascade');
             $table->timestamps();
+            $table->text('charges')->nullable();
+
         });
     }
    

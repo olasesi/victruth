@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\Events\EventOrderCreated;
+use App\Events\MonthlyRevenueCreated;
+use App\Listeners\UpdateRevenueCount;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Events\MonthlyLimoOrderCreated;
+use App\Listeners\UpdateDailyOrderCount;
+use App\Listeners\UpdateMonthlyLimoOrderCount;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +23,18 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+
+        EventOrderCreated::class => [
+            UpdateDailyOrderCount::class,
+        ],
+
+        MonthlyLimoOrderCreated::class => [
+            UpdateMonthlyLimoOrderCount::class,
+        ],
+        
+        MonthlyRevenueCreated::class => [
+            UpdateRevenueCount::class,
         ],
     ];
 

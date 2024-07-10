@@ -17,13 +17,16 @@ class DatabaseSeeder extends Seeder
             WebsiteSettingSeeder::class,
             CategorySectionSeeder::class,
             AdminRoleSeeder::class,
+            AdminSeeder::class, 
             SocialMediaPageSeeder::class,
             AppearanceSeeder::class,
             UserSeeder::class,
             CustomerSeeder::class,
             OrderSeeder::class,
-            
-           
+            EventSeeder::class,
+            DailyEventOrderSeeder::class,
+            MonthlyLimoOrderSeeder::class,
+            MonthlyLimoOrderRevenueSeeder::class, 
         ]);
     }
 }

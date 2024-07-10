@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a780f448c06273b7dd02736443b598e87492c23b',
+        'reference' => 'e2b5bacec3a8ffb98fd74112e75cedc8734ed44a',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -400,7 +400,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a780f448c06273b7dd02736443b598e87492c23b',
+            'reference' => 'e2b5bacec3a8ffb98fd74112e75cedc8734ed44a',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -518,12 +518,12 @@
             'dev_requirement' => true,
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.58.0',
-            'version' => '2.58.0.0',
+            'pretty_version' => '2.71.0',
+            'version' => '2.71.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
-            'reference' => '97a34af22bde8d0ac20ab34b29d7bfe360902055',
+            'reference' => '98276233188583f2ff845a0f992a235472d9466a',
             'dev_requirement' => false,
         ),
         'nette/schema' => array(
@@ -696,6 +696,21 @@
             'aliases' => array(),
             'reference' => '12bc8879fb65aef2138b26fc633cb1e3620cffba',
             'dev_requirement' => true,
+        ),
+        'psr/clock' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/clock',
+            'aliases' => array(),
+            'reference' => 'e41a24703d4560fd0acb709162f73b8adfc3aa0d',
+            'dev_requirement' => false,
+        ),
+        'psr/clock-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
         ),
         'psr/container' => array(
             'pretty_version' => '1.1.2',

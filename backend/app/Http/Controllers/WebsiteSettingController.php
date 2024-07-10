@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WebsiteSetting;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,12 +20,11 @@ class WebsiteSettingController extends Controller
     }
 
     public function updateWebsiteSetting(Request $request){
-       
+
             $validator = Validator::make($request->all(), [
                 'website_name'=> 'nullable',
                 'meta_description'=> 'nullable',
                 'upload_logo'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
-                'upload_fav'=> 'nullable|image|mimes:jpeg,jpg,png|max:2048',
                 'address'=> 'nullable',
                 'email'=> 'nullable|email',
                 'email2'=> 'nullable|email',
@@ -32,14 +32,14 @@ class WebsiteSettingController extends Controller
                 'phone2'=> 'nullable|numeric',
 
             ]);
-     
 
-    if($validator->fails()){
+        if($validator->fails()){
         return response()->json([
+            'status' => 401,
     'validator_errors'=> $validator->messages()
         ]);
     }else{
-        
+ 
         $websetting = WebsiteSetting::find(1);
         $websetting->value = $request->input('website_name');
         $websetting->save();
@@ -68,11 +68,11 @@ class WebsiteSettingController extends Controller
         $websetting->value = $request->input('phone2');
         $websetting->save();
         
-
+        
         if ($request->hasFile('upload_logo')) {
             $uploadedImage = $request->file('upload_logo');
             $placeholderImage = '/storage/assets/images/logo/logo.png';
-            
+         
             $existingImage = WebsiteSetting::where('name', 'logo')->value('value');
                 if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
                     File::delete(public_path($existingImage));
@@ -85,39 +85,38 @@ class WebsiteSettingController extends Controller
                 $websetting->value = '/storage/assets/images/logo/' . $file_name;
                 $websetting->save();
         
-                return response()->json(['message' => 'Image uploaded and updated']);
             
         } 
          
         
-        if ($request->hasFile('upload_fav')){
-            $uploadedImage = $request->file('upload_fav');
-            $placeholderImage = '/storage/assets/images/logo/fav.png';
+        // if ($request->hasFile('upload_fav')){
+        //     $uploadedImage = $request->file('upload_fav');
+        //     $placeholderImage = '/storage/assets/images/logo/fav.png';
             
-            $existingImage = WebsiteSetting::where('name', 'fav logo')->value('value');
+        //     $existingImage = WebsiteSetting::where('name', 'fav logo')->value('value');
 
-            if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
-                File::delete(public_path($existingImage));
-            }  
+        //     if ($existingImage !== $placeholderImage && File::exists(public_path($existingImage))) {
+        //         File::delete(public_path($existingImage));
+        //     }  
             
-            $file_name = time() . '_' . $uploadedImage->getClientOriginalName();
-            $file_path = $uploadedImage->storeAs('/public/assets/images/logo', $file_name);
+        //     $file_name = time() . '_' . $uploadedImage->getClientOriginalName();
+        //     $file_path = $uploadedImage->storeAs('/public/assets/images/logo', $file_name);
             
-            $websetting = WebsiteSetting::where('name', 'fav')->first();
-            $websetting->value = '/storage/assets/images/logo/' . $file_name;
-            $websetting->save();
-    
-            return response()->json(['message' => 'Image uploaded and updated']);
-             
-                    
-         }
+        //     $websetting = WebsiteSetting::where('name', 'fav')->first();
+        //     $websetting->value = '/storage/assets/images/logo/' . $file_name;
+        //     $websetting->save();
+            
+        //  }
 
       
         
          return response()->json(['status' => 200,
-         'message'=>'Success']);
+         'message'=>'Update was successful']);
          
     }
 
     }
+
+   
+    
 }

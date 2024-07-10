@@ -2,7 +2,7 @@
 #frontend/*
 #!frontend/build/
 #frontend/*
-frontend
+#frontend
 .cpanel.yml
 .gitignore
 .github

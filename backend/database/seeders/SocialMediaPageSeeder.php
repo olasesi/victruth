@@ -19,7 +19,7 @@ class SocialMediaPageSeeder extends Seeder
             DB::table('social_media_pages')->insert([[
                 'id' => 1,
                'social_media_name'=>'Facebook',
-               'social_media_url'=>'https://facebook.com/bimbolahammond',
+               'social_media_url'=>null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -41,7 +41,7 @@ class SocialMediaPageSeeder extends Seeder
             [
                 'id' => 4,
                'social_media_name'=>'Whatsapp',
-               'social_media_url'=>' https://wa.me/+2347084445319',
+               'social_media_url'=>null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

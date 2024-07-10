@@ -15,6 +15,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('ProcessDailyEventOrders')->daily();
+        $schedule->command('ProcessMonthlyLimoOrders')->monthly();
+        $schedule->command('ProcessLimoMonthlyRevenue')->monthly();
+
+        
         // $schedule->command('inspire')->hourly();
     }
 
